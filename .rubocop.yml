@@ -1,0 +1,84 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+# .rubocop.yml
+
+# AllCops settings
+AllCops:
+  # Enable/disable cops only for Ruby files
+  Include:
+    - "**/*.rb"
+
+  # Exclude files/directories
+  Exclude:
+    - "vendor/**/*"
+    - "config/**/*"
+    - "db/**/*"
+    - "node_modules/**/*"
+
+# Common configurations
+Metrics/BlockLength:
+  Exclude:
+    - "Rakefile"
+    - "spec/**/*"
+
+Metrics/MethodLength:
+  Exclude:
+    - "Rakefile"
+    - "spec/**/*"
+
+# Style/Documentation
+# Note: Documentation cop is moved to rubocop-rails
+# Enable rubocop-rails in your Gemfile: gem 'rubocop-rails', require: false
+require: rubocop-rails
+
+# Naming/FileName
+Naming/FileName:
+  Exclude:
+    - "db/migrate/*"
+    - "Rakefile"
+
+# Layout/IndentationWidth
+Layout/IndentationWidth:
+  Width: 2
+
+# Layout/LineLength
+Layout/LineLength:
+  Max: 120
+
+# Lint settings
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
+Lint/Debugger:
+  Exclude:
+    - "spec/**/*"
+
+Lint/ShadowedArgument:
+  Exclude:
+    - "spec/**/*"
+
+# Style settings
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Rails settings
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - test
+    - production
+
+Rails/HttpPositionalArguments:
+  Enabled: true
